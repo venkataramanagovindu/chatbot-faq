@@ -2,13 +2,14 @@ import { NextResponse } from "next/server";
 import { OpenAI } from "openai";  // Import the OpenAI client
 
 // Initialize the OpenAI client with your API key
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY || 'your-api-key-here';
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY!,
+  apiKey: OPENAI_API_KEY,
 });
 
 const MOCK_API_URL = "https://67e755056530dbd31112f96d.mockapi.io/faqs";
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function POSTMock(req: Request) {
