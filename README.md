@@ -1,36 +1,138 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FAQ Chatbot API
 
-## Getting Started
+This project provides an API for a chatbot that answers frequently asked questions (FAQs) using the OpenAI API. It simulates a real-time interaction by dynamically generating responses based on user queries.
 
-First, run the development server:
+## Features
+
+- Utilizes OpenAI API to generate dynamic answers to FAQs.
+- Allows querying the chatbot with a question, and the chatbot returns a relevant answer.
+- Supports delayed responses to simulate real-time interaction, similar to a real chatbot.
+
+## Project Structure
+
+```
+pages/
+  api/
+    ask.ts       # Handles user questions and fetches answers from OpenAI API
+    route.tsx    # API route handlers for processing requests
+components/      # Reusable components for UI (if applicable)
+styles/          # Global styles (optional)
+README.md        # Project documentation
+```
+
+## Setup & Installation
+
+### Prerequisites
+
+1. **Node.js** installed (v14.x or later)
+2. **TypeScript** (optional but recommended for type safety)
+3. **Next.js** application
+
+### Steps to Run the Project Locally
+
+1. **Clone the repository:**
+
+```bash
+git clone https://github.com/your-username/faq-chatbot-api.git
+cd faq-chatbot-api
+```
+
+2. **Install dependencies:**
+
+```bash
+npm install
+```
+
+3. **Create a `.env.local` file at the root of the project and add your OpenAI API key:**
+
+```env
+OPENAI_API_KEY=your-openai-api-key-here
+```
+
+4. **Run the application:**
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The app will be running at `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## API Endpoints
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### POST `/api/ask`
 
-## Learn More
+#### Request Body
 
-To learn more about Next.js, take a look at the following resources:
+A JSON object with a `question` property.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Example:**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```json
+{
+  "question": "What is the capital of France?"
+}
+```
 
-## Deploy on Vercel
+#### Response Example
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```json
+{
+  "answer": "The capital of France is Paris."
+}
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+#### Response Codes
+
+- `200 OK`: Successfully fetched the answer.
+- `400 Bad Request`: Missing or invalid question parameter.
+- `500 Internal Server Error`: Something went wrong while processing the request.
+
+### POST `/api/mock`
+
+Simulates a mock FAQ service.
+
+#### Request Body
+
+```json
+{
+  "question": "What is the weather today?"
+}
+```
+
+#### Response Example
+
+```json
+{
+  "answer": "It looks sunny outside!"
+}
+```
+
+## Code Explanation
+
+### API Route (`route.tsx`)
+
+- `POSTOpenAI`: This function uses the OpenAI API to generate answers dynamically based on the user's question. You need to provide your OpenAI API key for this functionality to work.
+
+### Chat Component (`chat.tsx`)
+
+- Manages the chat interface, including sending and receiving messages between the user and the bot.
+- Handles UI elements like dark mode, sidebar, chat history, and animated message rendering using framer-motion.
+
+## Additional Information
+
+### Extending Functionality
+
+- You can extend the functionality of the bot by adding new types of questions or integrating with other external services using their respective APIs.
+
+### Adding More Routes
+
+- If you want to add additional routes or modify the chatbot behavior, you can extend the `route.tsx` file with more API functions.
+
+## Contributing
+
+Feel free to fork this project, make improvements, and submit pull requests. Contributions are always welcome!
+
+## License
+
+This project is open-source and available under the MIT License.
+
