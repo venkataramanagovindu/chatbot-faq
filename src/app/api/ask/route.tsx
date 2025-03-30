@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { OpenAI } from "openai";  // Import the OpenAI client
 
 // Initialize the OpenAI client with your API key
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY!,
 });
