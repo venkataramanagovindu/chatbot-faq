@@ -10,7 +10,8 @@ const openai = new OpenAI({
 const MOCK_API_URL = "https://67e755056530dbd31112f96d.mockapi.io/faqs";
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
-export async function POSTMock(req: Request) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+async function POSTMock(req: Request) {
   try {
     new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate a delay
     const { question } = await req.json();
@@ -38,7 +39,7 @@ export async function POSTMock(req: Request) {
   }
 }
 
-export async function POSTOpenAI(req: Request) {
+async function POSTOpenAI(req: Request) {
   try {
     const { question } = await req.json();
 
