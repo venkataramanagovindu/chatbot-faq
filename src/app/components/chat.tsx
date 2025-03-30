@@ -18,6 +18,18 @@ export default function Chat() {
   const [loading, setLoading] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(true); // Sidebar state
 
+  const defaultQuestions = [
+    "What is your name?",
+    "What is the weather today?",
+    "What is the capital of France?",
+  ];
+
+
+  const handleQuestionClick = (question: string) => {
+    setInput(question);
+    sendMessage();
+  }
+
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
@@ -143,6 +155,19 @@ export default function Chat() {
           )}
           <div ref={messagesEndRef} /> {/* Auto-scroll target */}
         </div>
+
+        <div className="p-3 flex flex-wrap gap-2">
+          {defaultQuestions.map((question) => (
+            <button
+              key={question}
+              className="text-blue-500 border border-blue-300 px-3 py-1 rounded-md hover:bg-blue-100"
+              onClick={() => handleQuestionClick(question)}
+            >
+              {question}
+            </button>
+          ))}
+        </div>
+
 
         {/* Input Box */}
         <div className={`flex items-center border-t p-4 ${darkMode ? "bg-[#181818] border-[#252525]" : "bg-[#ffffff] border-[#D1D5DB]"}`}>
