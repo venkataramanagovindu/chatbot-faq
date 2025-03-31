@@ -69,7 +69,7 @@ async function POSTOpenAI(req: Request) {
       "What is the capital of France?": "The capital of France is Paris.",
     };
 
-    const answer = mockAnswers[question] || "Sorry, I don't know the answer to that question.";
+    const answer = mockAnswers[question] || "The OpenAI API throttled the request.";
 
     return NextResponse.json({ answer });
 
